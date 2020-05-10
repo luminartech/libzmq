@@ -37,6 +37,10 @@ foreach(test ${unittests})
 
   target_link_libraries(${test} libzmq-static ${OPTIONAL_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} unity)
 
+  if(QNXNTO)
+    target_link_libraries(${test} socket)
+  endif()
+
   if(RT_LIBRARY)
     target_link_libraries(${test} ${RT_LIBRARY})
   endif()

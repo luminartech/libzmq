@@ -1149,6 +1149,11 @@ if(BUILD_SHARED)
   if(RT_LIBRARY)
     target_link_libraries(libzmq -lrt)
   endif()
+
+  # TODO: better integrate, probably follow the `HAVE_*` idiom
+  if (QNXNTO)
+    target_link_libraries(libzmq socket)
+  endif()
 endif()
 
 if(BUILD_STATIC)
