@@ -1,0 +1,10 @@
+# Disable memory check for rosbag.
+# lum_mdk_dataset_rosbag_test failed with memory leaks error
+leak:/opt/ros/melodic/lib/librosbag_storage
+leak:/opt/ros/melodic/lib/libclass_loader
+leak:/usr/lib/x86_64-linux-gnu/libstdc++
+
+# Disable memory check for segmentation
+leak:libs/ubuntu1804-x86/libc10
+leak:libs/ubuntu1804-x86/libcaffe2
+leak:/usr/local/cuda/lib64/libcublas.so

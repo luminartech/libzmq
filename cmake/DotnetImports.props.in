@@ -1,0 +1,8 @@
+<Project>
+    <PropertyGroup>
+        <OutputPath>${_DN_OUTPUT_PATH}/</OutputPath>
+        <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        ${_DN_CUSTOM_BUILDPROPS}
+    </PropertyGroup>
+</Project>
