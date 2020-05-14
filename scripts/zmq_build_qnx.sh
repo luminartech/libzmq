@@ -7,6 +7,11 @@ if [[ -z "${QNX_SOURCE_SCRIPT}" ]]; then
     exit 1
 fi
 
+if [[ -z "${LDK_QNX_INSTALL_FOLDER}" ]]; then
+    echo "Set the environment variable LDK_QNX_INSTALL_FOLDER to specify where dependencies should be installed to."
+    exit 1
+fi
+
 . "${QNX_SOURCE_SCRIPT}"
 
 rm -rf build
@@ -16,6 +21,6 @@ cd build
 # TODO: libsodium on QNX
 #cmake .. -DWITH_LIBSODIUM=ON
 
-cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE=Release -DWITH_LIBSODIUM=OFF -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/aarch64/qnx/gcc/toolchain_aarch64_qnx_gcc.cmake
+cmake -G "Unix Makefiles" .. -DCMAKE_PREFIX_PATH:PATH=${LDK_QNX_INSTALL_FOLDER} -DCMAKE_INSTALL_PREFIX:PATH=${LDK_QNX_INSTALL_FOLDER} -DCMAKE_BUILD_TYPE=Release -DWITH_LIBSODIUM=OFF -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/aarch64/qnx/gcc/toolchain_aarch64_qnx_gcc.cmake
 
-cmake --build . -- -j "${LUMPDK_NPROC:-$(($(nproc) + 2))}"
+cmake --build . --target install -- -j "${LUMPDK_NPROC:-$(($(nproc) + 2))}"
