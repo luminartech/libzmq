@@ -12,7 +12,7 @@ if [[ -z "${LDK_QNX_INSTALL_FOLDER}" ]]; then
     exit 1
 fi
 
-if [[ $# -ne 3 ]]; then
+if [[ $# -ne 2 ]]; then
     echo "You must specify a build type (Release, Debug) and a toolchain file!"
     exit 1
 fi
