@@ -1528,6 +1528,10 @@ if(BUILD_SHARED)
       add_executable(${perf-tool} perf/${perf-tool}.cpp)
       target_link_libraries(${perf-tool} libzmq)
 
+      if(QNXNTO)
+          target_link_libraries(${perf-tool} socket)
+      endif()
+
       if(GNUTLS_FOUND)
         target_link_libraries(${perf-tool} ${GNUTLS_LIBRARIES})
       endif()
