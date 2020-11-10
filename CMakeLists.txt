@@ -1435,6 +1435,10 @@ if(BUILD_SHARED)
     endif()
   endif()
 
+  if(QNXNTO)
+    target_link_libraries(libzmq socket)
+  endif()
+
   if(HAVE_WS2_32)
     target_link_libraries(libzmq ws2_32)
   elseif(HAVE_WS2)
