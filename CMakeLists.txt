@@ -1217,6 +1217,10 @@ if(BUILD_SHARED)
     endif()
   endif()
 
+  if(QNXNTO)
+    target_link_libraries(libzmq socket)
+  endif()
+
   if(HAVE_WS2_32)
     target_link_libraries(libzmq ws2_32)
   elseif(HAVE_WS2)
@@ -1251,6 +1255,10 @@ if(BUILD_STATIC)
     target_link_libraries(libzmq-static ws2_32)
   elseif(HAVE_WS2)
     target_link_libraries(libzmq-static ws2)
+  endif()
+
+  if(QNXNTO)
+    target_link_libraries(libzmq-static socket)
   endif()
 
   if(HAVE_RPCRT4)
@@ -1290,6 +1298,10 @@ if(BUILD_SHARED)
     foreach(perf-tool ${perf-tools})
       add_executable(${perf-tool} perf/${perf-tool}.cpp)
       target_link_libraries(${perf-tool} libzmq)
+
+      if(QNXNTO)
+        target_link_libraries(${perf-tool} socket)
+      endif()
 
       if(ZMQ_BUILD_FRAMEWORK)
         # Copy perf-tools binaries into Framework
